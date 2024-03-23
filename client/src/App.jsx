@@ -9,6 +9,7 @@ import LoginPage from "./pages/login-page.jsx";
 import OTPPage from "./pages/otp-page.jsx";
 import ProfilePage from "./pages/profile-page.jsx";
 import WishPage from './pages/wish-page.jsx';
+import CartList from './components/Cart/cart-list.jsx';
 
 
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route path='/otp' element={<OTPPage></OTPPage>}></Route>
           <Route path='/profile' element={<ProfilePage></ProfilePage>}></Route>
           <Route path='/wish' element={<WishPage></WishPage>}></Route>
+          <Route path='/cart' element={<CartList></CartList>}></Route>
         </Routes>
     </BrowserRouter>
   );
