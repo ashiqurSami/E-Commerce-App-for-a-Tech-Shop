@@ -28,12 +28,42 @@ const CartStore=create((set)=>({
     },
     CartList:null,
     CartCount:0,
+    CartTotal:0,
+    CartVatTotal:0,
+    CartPayableTotal:0,
     CartListRequest:async()=>{
         try{
             let res=await axios.get(`/api/v1/ViewCartList`)
             set({CartList:res.data['data']})
             set({CartCount:(res.data['data']).length})
+            let total=0
+            let vat=0
+            let payable=0
+            res.data['data'].forEach((item,i) => {
+                if (item['product']['discount']===true){
+                    total=total+parseInt(item['qty'])*parseInt(item['product']['discountPrice'])
+                }
+                else{
+                    total= total=total+parseInt(item['qty'])*parseInt(item['product']['price'])
+                }
+                vat=total*0.05
+                payable=vat+total
+                set({CartTotal:total})
+                set({CartVatTotal:vat})
+                set({CartPayableTotal:payable})
+                
+            });    
+
         }catch (e) {
+            unauthorized(e.response.status)
+        }
+    },
+
+    RemoveCartListRequest:async(cartID)=>{
+        try{
+            set({CartList:null})
+            await axios.delete(`/api/v1//RemoveCartList/${cartID}`)
+        }catch(e){
             unauthorized(e.response.status)
         }
     },
