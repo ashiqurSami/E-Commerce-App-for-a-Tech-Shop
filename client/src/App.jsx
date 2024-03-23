@@ -8,6 +8,7 @@ import ProductDetails from './pages/product-details.jsx';
 import LoginPage from "./pages/login-page.jsx";
 import OTPPage from "./pages/otp-page.jsx";
 import ProfilePage from "./pages/profile-page.jsx";
+import WishPage from './pages/wish-page.jsx';
 
 
 
@@ -23,6 +24,7 @@ const App = () => {
           <Route path='/login' element={<LoginPage/>}></Route>
           <Route path='/otp' element={<OTPPage></OTPPage>}></Route>
           <Route path='/profile' element={<ProfilePage></ProfilePage>}></Route>
+          <Route path='/wish' element={<WishPage></WishPage>}></Route>
         </Routes>
     </BrowserRouter>
   );

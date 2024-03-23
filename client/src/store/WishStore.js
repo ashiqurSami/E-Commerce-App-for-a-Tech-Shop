@@ -3,6 +3,7 @@ import axios from "axios";
 import {unauthorized} from "../utility/utility.js";
 
 
+
 const WishStore=create((set)=>({
     isWishSubmit:false,
     WishSaveRequest:async(productID)=>{
@@ -23,6 +24,15 @@ const WishStore=create((set)=>({
             let res=await axios.get(`/api/v1/ViewWishList`)
             set({WishList:res.data['data']})
             set({WishCount:(res.data['data']).length})
+        }catch(e){
+            unauthorized(e.response.status)
+        }
+    },
+
+    RemoveWishListRequest:async(productID)=>{
+        try{
+            set({WishList:null})
+            await axios.delete(`/api/v1/RemoveWish`,{'productID':productID})
         }catch(e){
             unauthorized(e.response.status)
         }

@@ -1,5 +1,5 @@
 import React from 'react';
-import WishStore from "../store/WishStore.js";
+import WishStore from "../../store/WishStore.js";
 
 const WishSubmitButton = (props) => {
 

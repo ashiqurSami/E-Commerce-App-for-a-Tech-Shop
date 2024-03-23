@@ -4,14 +4,14 @@ import BrandSkeleton from '../../skeleton/brands-skeleton.jsx'
 import {Link} from 'react-router-dom'
 
 const Brands = () => {
-    console.log('brands jsx')
+    
     const {BrandList}=ProductStore()
 
     if (BrandList===null || BrandList.length===0){
         return <BrandSkeleton></BrandSkeleton>
     }
     else{
-        console.log('brands jsx')
+        
         return (
             
             <div className="section">
