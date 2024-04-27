@@ -72,8 +72,9 @@ exports.ViewCartListService=async(req)=>{
 exports.RemoveCartList=async(req)=>{
     try{
         let user_id=req.headers.user_id
-        let cartID=req.params.cartID
-        await CartModel.deleteOne({_id:cartID,userID:user_id})
+        let reqBody=req.body
+        reqBody.userID=user_id
+        await CartModel.deleteOne(reqBody)
         return {status:"success",message:"Cart List Remove Success"}
     }
     catch (e) {

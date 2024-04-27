@@ -39,7 +39,7 @@ router.delete('/RemoveWish',AuthVerification,WishListController.RemoveWish)
 router.post('/SaveCartList',AuthVerification,CartListController.SaveCartList)
 router.put('/UpdateCartList/:cartID',AuthVerification,CartListController.UpdateCartList)
 router.get('/ViewCartList',AuthVerification,CartListController.ViewCartList)
-router.delete('/RemoveCartList/:cartID',AuthVerification,CartListController.RemoveCartList)
+router.delete('/RemoveCartList',AuthVerification,CartListController.RemoveCartList)
 
 //Invoice 
 router.post('/CreateInvoice',AuthVerification,InvoiceController.CreateInvoice)

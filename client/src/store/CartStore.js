@@ -62,18 +62,22 @@ const CartStore=create((set)=>({
     RemoveCartListRequest:async(cartID)=>{
         try{
             set({CartList:null})
-            await axios.delete(`/api/v1//RemoveCartList/${cartID}`)
+            await axios.delete(`/api/v1/RemoveCartList`,{'_id':cartID})
         }catch(e){
             unauthorized(e.response.status)
         }
     },
+
     CreateInvoiceRequest:async ()=>{
         try{
             set({isCartSubmit:true})
             let res=await axios.get(`/api/v1/CreateInvoice`)
+            console.log(res)
             window.location.href=res.data['data']['GatewayPageURL']
+            
         }catch (e) {
-            unauthorized(e.response.status)
+            console.log(e.toString())
+            // unauthorized(e.response.status)
         }finally {
             set({isCartSubmit:false})
         }

@@ -11,7 +11,8 @@ exports.CreateInvoiceService=async(req)=>{
     try{
         let user_id=new ObjectID(req.headers.user_id)
         let cus_email=req.headers.email 
-
+        
+        console.log(user_id)
         let matchStage={$match:{userID:user_id}}
         let JoinStageProduct = {$lookup: {from: "products", localField: "productID", foreignField: "_id", as: "product"}};
         let unwindStage = {$unwind: "$product"};
@@ -32,9 +33,10 @@ exports.CreateInvoiceService=async(req)=>{
         let finalAmount=totalAmount+vat
         
         let Profile=await ProfileModel.find({userID:user_id})
-        let cus_details=`Name: ${Profile[0].cus_name}, Email: ${cus_email}, Address: ${Profile[0].cus_add}, Phone: ${Profile[0].cus_phone}`
-        let ship_details=`Name: ${Profile[0].ship_name}, City: ${Profile[0].ship_city}, Address: ${Profile[0].ship_add}, Phone: ${Profile[0].ship_phone}`
-    
+        console.log(Profile)
+
+        let cus_details=`Name:${Profile[0]['cus_name']}, Email:${cus_email}, Address:${Profile[0]['cus_add']}, Phone:${Profile[0]['cus_phone']}`;
+        let ship_details=`Name:${Profile[0]['ship_name']}, City:${Profile[0]['ship_city']}, Address:${Profile[0]['ship_add']}, Phone:${Profile[0]['ship_phone']}`;
         let tran_id=Math.floor(10000000+Math.random()*90000000);
         let val_id=0
         let delivery_status="pending"

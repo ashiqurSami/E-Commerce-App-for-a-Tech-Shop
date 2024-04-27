@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import CartSubmitButton from "../Cart/CartSubmitButton.jsx";
 import WishSubmitButton from "../wish/WishSubmitButton.jsx";
 import WishStore from "../../store/WishStore.js";
+import NoData from "../Layout/NoData.jsx";
 
 const Details = () => {
 
@@ -16,6 +17,7 @@ const Details = () => {
     const [quantity,SetQuantity]=useState(1)
     const {CartForm,CartFormChange,CartSaveRequest,CartListRequest}=CartStore()
     const {WishSaveRequest,WishListRequest}=WishStore()
+
     const incrementQuantity=()=>{
         SetQuantity(quantity=>quantity+1)
     }
@@ -40,9 +42,10 @@ const Details = () => {
         }
     }
 
-    if (Details === null) {
-        return <DetailsSkeleton></DetailsSkeleton>
+    if (!Details || Details.length === 0) {
+        return (<NoData></NoData>)
     }
+    
     else {
         return (
             <div>

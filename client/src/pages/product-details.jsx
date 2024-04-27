@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import Layout from './../components/Layout/layout';
 import Brands from './../components/product/brands';
-import Details from './../components/product/details';
 import ProductStore from '../store/ProductStore';
 import { useParams } from 'react-router-dom';
+import NoData from '../components/Layout/NoData';
+import Details from '../components/product/details';
 
 const ProductDetails = () => {
 
@@ -20,10 +21,12 @@ const ProductDetails = () => {
     },[])
 
     return (
+        
         <Layout>
-            <Details></Details>
-            <Brands></Brands>
+            <Details />
+            <Brands />
         </Layout>
+        
     );
 };
 

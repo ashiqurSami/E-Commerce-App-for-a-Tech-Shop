@@ -74,6 +74,7 @@ const AppNavBar = () => {
                             </span>
                         </ul>
                     </div>
+                    
                     <div className=" d-lg-flex">
                         <div className="input-group">
                             <input onChange={(e)=>SetSearchKeyword(e.target.value)} className="form-control" type="search" placeholder="Search" aria-label="Search" />
